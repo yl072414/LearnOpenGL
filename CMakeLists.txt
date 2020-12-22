@@ -2,11 +2,20 @@ cmake_minimum_required(VERSION 3.5)
 
 project(LearnOpenGL LANGUAGES CXX)
 
-set(SRC_LIST main.cpp glad.c)
+set(SRC
+    src/glad.c
+    src/main.cpp
+)
 
-include_directories(${LearnOpenGL_SOURCE_DIR}/include)
 link_directories(${LearnOpenGL_SOURCE_DIR}/lib)
 
-add_executable(LearnOpenGL ${SRC_LIST})
+add_executable(LearnOpenGL ${SRC})
 
-target_link_libraries(LearnOpenGL opengl32.lib glfw3.lib)
+target_include_directories(LearnOpenGL
+    PRIVATE 
+        ${PROJECT_SOURCE_DIR}/include
+)
+
+target_link_libraries(LearnOpenGL 
+	PRIVATE 
+		opengl32.lib glfw3.lib)
